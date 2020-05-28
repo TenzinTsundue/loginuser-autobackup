@@ -1,0 +1,53 @@
+h3 {
+  text-align: center;
+}
+
+/* For both login and register */
+.loginregister {
+  margin: 50px 0px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #c2c5cc;
+}
+
+.loginregister .col-md-6 {
+  background-color: #4682bf;
+  border-radius: 10px 0px 0px 10px;
+}
+
+/* Member login part design*/
+.memberlogin {
+  background-color: #4682bf;
+  color: #fff;
+  padding: 20px;
+}
+
+.memberlogin input {
+  border: 0;
+}
+
+.memberlogin a {
+  color: #c2c5cc;
+}
+/* Create account part design*/
+.createaccout {
+  padding-top: 20px;
+}
+
+/* Thankyou page */
+
+/* Green tick logo */
+.greenticklogo {
+  width: 120px;
+  height: 100px;
+}
+
+/**/
+.socialmedia a {
+  color: black;
+}
+
+.graybackground {
+  margin-top: 100px;
+  padding: 50px 0px;
+  background-color: #f2f2f2;
+}
