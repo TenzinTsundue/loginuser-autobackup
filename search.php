@@ -72,10 +72,12 @@
       <div class="wrap">
         <img class="main_logo" src="media/cta_logo.png" />
         <div class="search">
-          <input type="text" class="input" placeholder="Search" />
-          <button type="submit" class="searchButton">
+          
+          <input type="text" class="input" placeholder="Search" name="search"/>
+          <button type="submit" class="searchButton name="submit">
             <i class="fa fa-search"></i>
           </button>
+          
         </div>
         <div class="form-check">
           <input type="checkbox" class="form-check-input" id="report_id" />

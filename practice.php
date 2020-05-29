@@ -40,3 +40,38 @@
     }
   
 ?>
+
+<?php
+  $db = new PDO("mysql:host=localhost; dbname=loginuser", 'root','root');
+
+  if (isset($_POST["submit"])) {
+    $str = $_POST["search"];
+    $sth = $db->prepare("SELECT * FROM 'document' WHERE title = '$str'");
+
+    $sth->setFetchMode(PDO:: FETCH_OBJ);
+    $sth->execute();
+
+    if($row = $sth->fetch())
+    {
+      ?> 
+      <br><br>
+      <table>
+        <tr>
+          <td>IMAGE</td>
+          <td>
+          <h4><?php echo $row->title; ?></h4>
+          <p><?php echo $row->details; ?></p>
+          <p><?php echo $row->author; ?></p>
+          <p><?php echo $row->department; ?></p>
+          <button class="btn btn-primary">Download</button>
+          
+          </td>
+        </tr>
+      </table>
+    <?php
+    }
+    else{
+      echo "Name does not exist";
+    }
+  }
+  ?> 
