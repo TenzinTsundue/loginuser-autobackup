@@ -40,7 +40,7 @@
         <div class="col-6 text-center">
         <img src="media\greentick.png" class="greenticklogo"><br><br>
         <h2>THANK YOU!</h2>
-        <p>Your Document "---" has been successfully uploaded</p>
+        <p>Your Document <strong>"<?= $_GET['filename'] ?>"</strong> has been successfully uploaded</p>
         <button class="btn btn-primary" onclick="document.location = 'userupload.php'">Submit Another File</button>
         <button class="btn btn-secondary" onclick="document.location = 'search.php'">Go home</button>
         <br><br><br><br>

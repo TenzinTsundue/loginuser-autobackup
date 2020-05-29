@@ -49,7 +49,7 @@
                         </div>
                         <div>
                             <label for="details"><strong>Details:</strong></label><br />
-                            <textarea rows = "3" cols = "50" name = "detail" class="form-control" required></textarea>
+                            <textarea rows = "3" cols = "50" name = "details" class="form-control" required></textarea>
                             </textarea>
                         </div>
                         <div>

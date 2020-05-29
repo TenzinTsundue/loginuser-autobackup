@@ -46,6 +46,7 @@ if (isset($_POST['login_user'])) {
   }
 ?>
 
+
 <?php
     $servername = "localhost";
     $database = "loginuser";
