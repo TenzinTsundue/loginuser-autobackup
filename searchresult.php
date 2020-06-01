@@ -64,20 +64,25 @@ function filterTable($query)
       
 
       <br><br>
-      <table>
+      <div class="container">
+      <div class="row">
       <?php while($row = mysqli_fetch_array($search_result)):?>
-        <tr>
-          <td>IMAGE IMAGE IMAGE</td>
-          <td>
+        
+        <div class="col-3">
+          IMAGE IMAGE IMAGE
+        </div>
+        <div class="col-9">
           <h4><?php echo $row['title']; ?></h4>
           <p><?php echo $row['details']; ?></p>
           <p><?php echo $row['author']; ?></p>
-          <p><?php echo $row['department']; ?></p>
-          <button class="btn btn-primary">Download</button>
-          </td> 
-        </tr>
+          <p><em><?php echo $row['department']; ?></em></p>
+          <button class="btn btn-primary">View</button>
+          <button class="btn btn-outline-primary">Download</button>
+          <br><br>
+        </div>
         <?php endwhile;?> 
-      </table>
+      </div>
+      </div>
       </form>
 
   </body>

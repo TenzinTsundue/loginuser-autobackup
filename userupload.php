@@ -37,7 +37,7 @@
             <div class="row">
             <div class="col-6">
                     <h3>Upload your file here</h3><br>
-                    <form enctype="multipart/form-data" action="practice.php" method="POST">
+                    <form enctype="multipart/form-data" action="upload.php" method="POST">
                         
                         <div>
                             <label for="title"><strong>Title:</strong> </label><br />
@@ -82,10 +82,10 @@
                             </div>   
                         <div>
                             <label for="language"><strong>Language:</strong></label><br />
-                            <label class="block"><input class="form-check-inline" type="radio" name="language" value="tibetan" required>Tibetan</label>
-                            <label class="block"><input class="form-check-inline" type="radio" name="language" value="english">Englsih</label>
-                            <label class="block"><input class="form-check-inline" type="radio" name="language" value="hindi">Hindi</label>
-                            <label class="block"><input class="form-check-inline" type="radio" name="language" value="other">Other</label>
+                            <label class="block"><input class="form-check-inline" type="radio" name="language" value="Tibetan" required>Tibetan</label>
+                            <label class="block"><input class="form-check-inline" type="radio" name="language" value="English">Englsih</label>
+                            <label class="block"><input class="form-check-inline" type="radio" name="language" value="Hindi">Hindi</label>
+                            <label class="block"><input class="form-check-inline" type="radio" name="language" value="Other">Other</label>
                         </div>
                         <div>
                             <label for="tags"><strong>Tags:</strong></label><br />
@@ -95,13 +95,13 @@
                             <label for="categry"><strong>Category:</strong></label><br />
                             <div class="row">
                                 <div class="col-3">
-                                    <input class="form-check-inline" type="radio" name="category" value="report" onclick="javascript:yesnoCheck();" id="reportCheck" checked="checked">Report<br>
+                                <label class="block"><input class="form-check-inline" type="radio" name="category" value="Report" onclick="javascript:yesnoCheck();" id="reportCheck" checked="checked">Report</label><br>
                                 </div>
                                 <div class="col-9" id="reportForm">
                                     <label for="publication">Publication:</label>
                                     <select class="form-control" name="publication">
-                                        <option value="internal">Internal</option>
-                                        <option value="external">External</option>
+                                        <option value="Internal">Internal</option>
+                                        <option value="External">External</option>
                                     </select>
                                     <label for="sector">Sector:</label>
                                     <input class="form-control" list="sector" type="text" name="sector">
@@ -117,14 +117,14 @@
                                         <option value="Workforce"/>
                                         <option value="Healthcare"/>
                                         <option value="Agriculture"/>
-                                        <option value="Dempcracy"/>
+                                        <option value="Democracy"/>
                                     </datalist>
                                 </div>
                                 <div class="col-3">
-                                    <input class="form-check-inline" type="radio" name="category" onclick="javascript:yesnoCheck();" id="projectCheck" value="project">Project<br>
+                                    <label class="block"><input class="form-check-inline" type="radio" name="category" onclick="javascript:yesnoCheck();" id="projectCheck" value="Project">Project</label><br>
                                 </div>
                                 <div id="projectForm" style="visibility:hidden" class="col-9">
-                                    <label for="sector">Include:</label>
+                                    <label for="include">Include:</label>
                                     <input class="form-control" list="include" type="text" name="include">
                                     <datalist id="include">
                                         <option value="Budget"/>
@@ -136,7 +136,7 @@
                                     </datalist>
                                 </div>
                                 <div class="col-3">
-                                    <input class="form-check-inline" type="radio" name="category" onclick="javascript:yesnoCheck();" id="generalCheck" value="general">General<br>
+                                    <label class="block"><input class="form-check-inline" type="radio" name="category" onclick="javascript:yesnoCheck();" id="generalCheck" value="General">General</label><br>
                                 </div>
                                 <div class="col=9"></div>
                             </div>

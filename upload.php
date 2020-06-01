@@ -1,29 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Upload your files</title>
-</head>
-<body>
-  <form enctype="multipart/form-data" action="upload.php" method="POST">
-    <p>Upload your file</p>
-    <input type="file" name="uploaded_file"></input><br />
-    <input type="submit" value="Upload"></input>
-  </form>
-</body>
-</html>
-<?PHP
-  if(!empty($_FILES['uploaded_file']))
-  {
-    $path = "uploads/";
-    $path = $path . basename( $_FILES['uploaded_file']['name']);
+<?php
+    $servername = "localhost";
+    $database = "loginuser";
+    $username = "root";
+    $password = "root";
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password, $database);
 
-    if(move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
-      echo "The file ".  basename( $_FILES['uploaded_file']['name']). 
-      " has been uploaded";
-    } else{
-        echo "There was an error uploading the file, please try again!";
+    if (isset($_POST['submit'])) {
+
+        $title = $_POST['title'];
+        $author = $_POST['author'];
+        $details = $_POST['details'];
+        $file_type = $_POST['file_type'];
+        $department = $_POST['department'];
+        $language = $_POST['language'];
+        $tags = $_POST['tags'];
+        $category = $_POST['category'];
+        $publication = $_POST['publication'];
+        $sector = $_POST['sector'];
+        $include = $_POST['include'];
+
+        #file name with a random number for similarity issues problem
+        #$pname = rand(1000,10000)."-".$_FILES["uploaded_file"]["name"];
+
+        #temporary file name to store file
+        $tname = $_FILES["uploaded_file"]["tmp_name"];
+
+        #upload directory path
+        $upload_dir = 'uploads/';
+
+        $dname = $upload_dir . basename($_FILES['uploaded_file']['name']);
+
+        #to move the uploaded file to specific location
+        move_uploaded_file($tname, $dname);
+
+        #sql query to insert into database
+        $query = "INSERT INTO document (title, author, details, file_path, file_type, department, language, tags, category, publication, sector, include) VALUES ('$title', '$author', '$details', '$dname', '$file_type', '$department', '$language', '$tags', '$category', '$publication', '$sector', '$include')";
+        
+        $filename= basename($_FILES['uploaded_file']['name']);
+        
+        if (mysqli_query($conn, $query)) {
+            header('location: thankyou.php?filename='.$filename.'');
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
     }
-  }
-?>
-
-/*https://gist.github.com/taterbase/2688850*/
+  
