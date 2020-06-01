@@ -93,13 +93,76 @@
                         </div>
                         <div>
                             <label for="categry"><strong>Category:</strong></label><br />
-                            <input class="form-check-inline" type="radio" name="category" value="report" required>Report<br>
-                            <input class="form-check-inline" type="radio" name="category" value="project">Project<br>
-                            <input class="form-check-inline" type="radio" name="category" value="general">General<br>
+                            <div class="row">
+                                <div class="col-3">
+                                    <input class="form-check-inline" type="radio" name="category" value="report" onclick="javascript:yesnoCheck();" id="reportCheck" checked="checked">Report<br>
+                                </div>
+                                <div class="col-9" id="reportForm">
+                                    <label for="publication">Publication:</label>
+                                    <select class="form-control" name="publication">
+                                        <option value="internal">Internal</option>
+                                        <option value="external">External</option>
+                                    </select>
+                                    <label for="sector">Sector:</label>
+                                    <input class="form-control" list="sector" type="text" name="sector">
+                                    <datalist id="sector">
+                                        <option value="Education"/>
+                                        <option value="Entrepreneurship"/>
+                                        <option value="Capacity Building"/>
+                                        <option value="ISDP"/>
+                                        <option value="Gender"/>
+                                        <option value="Banking"/>
+                                        <option value="Arts & Culture"/>
+                                        <option value="WASH"/>
+                                        <option value="Workforce"/>
+                                        <option value="Healthcare"/>
+                                        <option value="Agriculture"/>
+                                        <option value="Dempcracy"/>
+                                    </datalist>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-check-inline" type="radio" name="category" onclick="javascript:yesnoCheck();" id="projectCheck" value="project">Project<br>
+                                </div>
+                                <div id="projectForm" style="visibility:hidden" class="col-9">
+                                    <label for="sector">Include:</label>
+                                    <input class="form-control" list="include" type="text" name="include">
+                                    <datalist id="include">
+                                        <option value="Budget"/>
+                                        <option value="Policy"/>
+                                        <option value="Guidelines"/>
+                                        <option value="M&E"/>
+                                        <option value="Timeline"/>
+                                        <option value="Financial Report"/>
+                                    </datalist>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-check-inline" type="radio" name="category" onclick="javascript:yesnoCheck();" id="generalCheck" value="general">General<br>
+                                </div>
+                                <div class="col=9"></div>
+                            </div>
+                            <script>
+                                function yesnoCheck() {
+                                    if (document.getElementById('reportCheck').checked) {
+                                        document.getElementById('reportForm').style.visibility = 'visible';
+                                        document.getElementById('projectForm').style.visibility = 'hidden';
+                                    }
+                                    else if (document.getElementById('projectCheck').checked) {
+                                        document.getElementById('projectForm').style.visibility = 'visible';
+                                        document.getElementById('reportForm').style.visibility = 'hidden';
+                                    }
+                                    else if (document.getElementById('generalCheck').checked) {
+                                        document.getElementById('projectForm').style.visibility = 'hidden';
+                                        document.getElementById('reportForm').style.visibility = 'hidden';
+                                    }
+                                    else {
+                                        document.getElementById('projectForm').style.visibility = 'hidden';
+                                        document.getElementById('reportForm').style.visibility = 'hidden';
+                                    }
+                                }
+                            </script>
                         </div>
-                        
                         <br />
-                        <button type="submit" class="btn btn-primary" name="upload">UPLOAD</button><br />
+                        <button type="submit" class="btn btn-primary float-right" name="submit">SUBMIT</button><br /><br><br>
                        
                     </form>
             </div>
