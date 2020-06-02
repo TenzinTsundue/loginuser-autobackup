@@ -99,12 +99,12 @@
                                 </div>
                                 <div class="col-9" id="reportForm">
                                     <label for="publication">Publication:</label>
-                                    <select class="form-control" name="publication">
+                                    <select class="form-control" name="publication" id="publication">
                                         <option value="Internal">Internal</option>
                                         <option value="External">External</option>
                                     </select>
                                     <label for="sector">Sector:</label>
-                                    <input class="form-control" list="sector" type="text" name="sector">
+                                    <input class="form-control" list="sector" type="text" name="sector" id="sector">
                                     <datalist id="sector">
                                         <option value="Education"/>
                                         <option value="Entrepreneurship"/>
@@ -125,7 +125,7 @@
                                 </div>
                                 <div id="projectForm" style="visibility:hidden" class="col-9">
                                     <label for="include">Include:</label>
-                                    <input class="form-control" list="include" type="text" name="include">
+                                    <input class="form-control" list="include" type="text" name="include" id="include">
                                     <datalist id="include">
                                         <option value="Budget"/>
                                         <option value="Policy"/>
@@ -140,23 +140,29 @@
                                 </div>
                                 <div class="col=9"></div>
                             </div>
+                            <!-- Script for the selection visibility toggle and clearing the not used field -->
                             <script>
                                 function yesnoCheck() {
                                     if (document.getElementById('reportCheck').checked) {
                                         document.getElementById('reportForm').style.visibility = 'visible';
                                         document.getElementById('projectForm').style.visibility = 'hidden';
+                                        document.getElementById('include').value = '';
                                     }
                                     else if (document.getElementById('projectCheck').checked) {
                                         document.getElementById('projectForm').style.visibility = 'visible';
                                         document.getElementById('reportForm').style.visibility = 'hidden';
+                                        document.getElementById('publication').value = '';
+                                        document.getElementById('sector').value = '';
                                     }
                                     else if (document.getElementById('generalCheck').checked) {
                                         document.getElementById('projectForm').style.visibility = 'hidden';
                                         document.getElementById('reportForm').style.visibility = 'hidden';
+                                        document.getElementById('publication').value = '';
+                                        document.getElementById('sector').value = '';
+                                        document.getElementById('include').value = '';
                                     }
                                     else {
-                                        document.getElementById('projectForm').style.visibility = 'hidden';
-                                        document.getElementById('reportForm').style.visibility = 'hidden';
+                                        // noting is there to do
                                     }
                                 }
                             </script>

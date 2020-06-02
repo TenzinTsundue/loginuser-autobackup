@@ -29,7 +29,7 @@ function filterTable($query)
   <head>
     <meta charset="UTF-8" />
     <title>Search Page</title>
-    <link rel="stylesheet" href="css/indexstyle.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -55,36 +55,83 @@ function filterTable($query)
     ></script>
   </head>
   <body>
-      <br>
-    <!-- Search result page -->
+      <!-- Search result page -->
+      <div class="search_form">
       <form action="searchresult.php" method="post">
-        <label><strong>TK Search</strong></label>
-        <input type="text" name="search" placeholder="search">
-        <input type="submit" name="submit" value="GO">
-      
-
-      <br><br>
-      <div class="container">
-      <div class="row">
-      <?php while($row = mysqli_fetch_array($search_result)):?>
-        
-        <div class="col-3">
-          IMAGE IMAGE IMAGE
-        </div>
-        <div class="col-9">
-          <h4><?php echo $row['title']; ?></h4>
-          <p><?php echo $row['details']; ?></p>
-          <p><?php echo $row['author']; ?></p>
-          <p><em><?php echo $row['department']; ?></em></p>
-          <button class="btn btn-primary">View</button>
-          <button class="btn btn-outline-primary">Download</button>
-          <br><br>
-        </div>
-        <?php endwhile;?> 
-      </div>
-      </div>
+      <label><strong>TK Search</strong></label>
+      <input type="text" name="search" placeholder="search">
+      <input type="submit" name="submit" value="GO">
       </form>
+      </div>
 
+    <div class="filter">
+    <form action="/action_page.php">
+      <p>Sector</p>
+        <input type="checkbox" name="education" value="education">
+        <label for="education">Education</label><br>
+        <input type="checkbox" name="enterpreneruship" value="enterpreneruship">
+        <label for="enterpreneruship"> Enterpreneruship</label><br>
+        <input type="checkbox" name="capacitybuilding" value="capacitybuilding">
+        <label for="capacitybuilding">Capacity Building</label><br>
+        <input type="checkbox" name="gender" value="gender">
+        <label for="gender">Gender</label><br>
+        <input type="checkbox" name="banking" value="banking">
+        <label for="banking"> Banking</label><br>
+        <input type="checkbox" name="artculture" value="artculture">
+        <label for="artculture">Arts & Culture</label>
+      <p>File Type</p>
+        <input type="checkbox" name="documents" value="documents">
+        <label for="documnets">Documents </label><br>
+        <input type="checkbox" name="video" value="video">
+        <label for="video"> Video</label><br>
+        <input type="checkbox" name="audio" value="audio">
+        <label for="audio"> Audio</label><br>
+        <input type="checkbox" name="image" value="image" >
+        <label for="image"> Image</label><br>
+      <p>Publication</p>
+        <input type="checkbox" name="internal" value="internal">
+        <label for="internal"> Internal</label><br>
+        <input type="checkbox" name="external" value="external">
+        <label for="external"> External</label>
+      <p>language</p>
+        <input type="checkbox" name="english" value="english">
+        <label for="english"> Englsih</label><br>
+        <input type="checkbox" name="tibetan" value="Car">
+        <label for="language"> Tibetan</label><br>
+        <input type="checkbox" name="vehicle3" value="Boat" >
+        <label for="language"> Hindi</label><br>
+        <input type="submit" value="Apply">
+    </form>
+    </div>
+    <div class="search_count"">
+      <em><?php 
+      $count = mysqli_num_rows($search_result); 
+      echo $count;
+      ?> 
+      Result found </em>
+    </div>     
+    
+    <?php while($row = mysqli_fetch_array($search_result)):?>
+
+    <div class="search_result">
+      <strong><?php echo $row['title']; ?></strong><br>
+      <!-- first 150 character to show -->
+      <?php 
+        if (strlen($row['details']) > "150") {
+          echo substr($row['details'], 0, 150)."...";
+        } else {
+          echo $row['details'];
+        }
+      ?><br>
+      <?php echo $row['author']; ?>
+      <p><em><?php echo $row['department']; ?></em></p>
+      <a class="link_button" href="<?php echo $row['file_path']; ?>" target="_blank">View</a>
+      &nbsp;&nbsp;
+      <a class="link_button" href="<?php echo $row['file_path']; ?>" download>download</a>
+    </div>  
+
+    <?php endwhile;?> 
+     
   </body>
 </html>
 
