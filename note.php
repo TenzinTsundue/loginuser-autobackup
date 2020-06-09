@@ -141,3 +141,9 @@ Yes <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesC
 ?>
 
 /*https://gist.github.com/taterbase/2688850*/
+
+<form action="searchresult.php" method="post">
+      <lable><strong>TK Search</strong></label>
+      <input type="text" name="search" placeholder="search">
+      <input type="submit" name="submit" value="GO">
+      </form>

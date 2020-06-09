@@ -1,4 +1,52 @@
-<?php include('server.php'); ?>
+<?php 
+
+session_start();
+
+//initialising variable
+$first_name = "";
+$last_name = "";
+$email = "";
+
+$errors = array();
+
+//connect to db
+
+$db = mysqli_connect('localhost','root','root','loginuser') or die("could not connect to database");
+
+
+if (isset($_POST['login_user'])) {
+
+  $email = mysqli_real_escape_string($db, $_POST['email']);
+  $password = mysqli_real_escape_string($db, $_POST['password']);
+
+  if (empty($email)) {
+      array_push($errors, "Email is required");
+  }
+  if (empty($password)) {
+      array_push($errors, "Password is required");
+  }
+
+  if (count($errors) == 0) {
+      $password = md5($password);
+
+      $query = "SELECT * FROM user_profile WHERE email='$email' AND password ='$password' ";
+      $results = mysqli_query($db, $query);
+      
+      if(mysqli_num_rows($results)) {
+          //fetch data
+          $uid = mysqli_fetch_array($results);
+
+          $_SESSION['email'] = $email;
+          $_SESSION['first_name'] = $uid['first_name'];
+          $_SESSION['last_name'] = $uid['last_name'];
+          $_SESSION['success'] = "Logged in successfully";
+          header('location: userupload.php');
+      } else {
+          array_push($errors, "Wrong username/password combimantion. please try again.");
+      }
+  }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,6 +81,9 @@
     ></script>
   </head>
   <body>
+    <div class="sessionerror">
+  <?php include('errors.php') ?>
+  </div>
     <div class="container-fluid">
       <div class="row">
         <div class="col-3">
@@ -41,62 +92,30 @@
             <div class="row">
             <div class="col-md-6">
                 <div class="memberlogin">
-                    <h3>MEMBER LOGIN</h3><br>
-                    <form action="loginuser.php" method="POST">
-                        
+                    <h3>MEMBER LOGIN</h3>
+                    <form action="loginuser.php" method="POST">      
                         <div>
-                            <label for="email">Email</label><br />
+                            <label for="email">Email</label>
                             <input type="email" class="form-control" name="email" required/>
                         </div>
                         <div>
-                            <label for="password">Password</label><br />
+                            <label for="password">Password</label>
                             <input type="password" class="form-control" name="password" required/>
-                        </div>
-                        <br />
-                        <button type="submit" class="btn btn-light" name="login_user">LOGIN</button><br />
-                        <a href="#">Forgot Password?</a>  
+                        </div> 
+                        
+                        <a href="#">Forgot Password?</a>   
+                        <div class="loginbutton">
+                          <button type="submit" class="btn btn-light" name="login_user">LOGIN</button>
+            
+                        </div>                    
                     </form>
+                    <a href="signupuser.php" class="createaccount">Create an accout</a> 
                 </div>
             </div>
             
             <div class="col-6">
             <div class="createaccout">
-            <h3>CREATE ACCOUNT</h3><br>
-            <form action="loginuser.php" method="POST">
-            <?php include('errors.php') ?>
-                <div class="row">
-                    <div class="col-md">
-                    <label for="firstname">First Name</label>
-                    <input type="text" class="form-control" name="first_name" required>
-                    </div>
-                    <div class="col-md">
-                    <label for="firstname">Last Name</label>
-                    <input type="text" class="form-control" name="last_name" required>
-                    </div>
-                </div>
-                <div>
-                    <label for="email">Your Email</label><br />
-                    <input type="email" class="form-control" name="email" required/>
-                </div>
-                <div class="row">
-                    <div class="col-md">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" name="password_1" required>
-                    </div>
-                    <div class="col-md">
-                    <label for="password">Confirm password</label>
-                    <input type="password" class="form-control" name="password_2" required>
-                    </div>
-                </div>
-                
-                <input type="checkbox" name="agree" />
-                <label for="agree">
-                    I agree to the <a href="#">Term and Condition</a></label
-                ><br />
-                <button type="submit" class="btn btn-primary">REGISTER</button>
-                <br><br>
-                </div>
-            </form>
+              <img class="loginimage" src="media/loginimage.jpg">
             </div>
             </div>
         </div>

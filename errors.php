@@ -1,8 +1,12 @@
 <?php if(count($errors) > 0 ) : ?>
-    <div>
+    <div style="
+    background-color: #ff6961;
+    color: #fff;
+    height:50px;
+    padding:15px;">
 
         <?php foreach($errors as $error) : ?>
-            <p style="color:red"><?php echo $error ?></p>
+            <p><?php echo $error ?></p>
         <?php endforeach ?>
 
     </div>

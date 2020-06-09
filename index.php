@@ -14,6 +14,7 @@ if(isset($_GET['logout'])) {
     header("location : loginser.php");
 }
 
+
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +42,7 @@ if(isset($_GET['logout'])) {
 
     <?php if(isset($_SESSION['email'])) : ?>
         <h3>Welcome <strong><?php echo $_SESSION['email']; ?></strong></h3>
-        <button><a href= "index.php?logout="1"></a></button>
+        <button><a href= "index.php?logout='1'"></a></button>
     <?php endif ?>
 
 
